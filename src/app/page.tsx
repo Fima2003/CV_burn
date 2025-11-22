@@ -107,24 +107,24 @@ export default function Home() {
   const scoreAccent = result && (result.score >= 75 ? 'text-emerald-400' : result.score >= 45 ? 'text-amber-300' : 'text-red-500');
 
   return (
-    <div className="relative flex h-screen w-full items-center justify-center overflow-hidden bg-zinc-950 text-zinc-100 font-mono">
+    <div className="relative flex min-h-screen w-full flex-col overflow-x-hidden bg-zinc-950 text-zinc-100 font-mono lg:h-screen lg:flex-row lg:items-center lg:justify-center lg:overflow-hidden">
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(248,113,113,0.25),_transparent_65%)]" />
       <div className="pointer-events-none absolute inset-0 opacity-20 [background-image:linear-gradient(120deg,rgba(244,63,94,0.12)_1px,transparent_1px),linear-gradient(-120deg,rgba(244,63,94,0.08)_1px,transparent_1px)] [background-size:50px_50px]" />
       <div className="pointer-events-none absolute -top-40 -right-24 h-[28rem] w-[28rem] rounded-full bg-red-500/25 blur-3xl animate-orbit" />
       <div className="pointer-events-none absolute -bottom-32 -left-20 h-80 w-80 rounded-full bg-rose-500/20 blur-3xl animate-orbit [animation-direction:reverse]" />
       <div className="pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-black via-black/70 to-transparent" />
 
-      <main className="relative z-10 h-full w-full max-w-6xl px-6">
-        <div className="flex h-full flex-col gap-6 rounded-[32px] border border-white/10 bg-zinc-950/70 p-6 shadow-[0_0_80px_rgba(244,63,94,0.25)] backdrop-blur-2xl">
+      <main className="relative z-10 w-full max-w-6xl px-4 py-8 sm:px-6 lg:h-full lg:px-8 mx-auto min-h-screen lg:min-h-0">
+        <div className="flex h-full flex-col gap-8 rounded-[24px] border border-white/10 bg-zinc-950/70 p-5 shadow-[0_0_80px_rgba(244,63,94,0.25)] backdrop-blur-2xl sm:rounded-[28px] sm:p-6 lg:rounded-[32px] lg:p-8 lg:min-h-0">
           <section className="flex flex-col items-center gap-4 text-center">
             <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs uppercase tracking-[0.3em] text-red-300">
               <Sparkles className="h-4 w-4 text-red-400" /> Brutalist Career Interventions
             </span>
             <div className="space-y-3">
-              <h1 className="text-3xl font-bold leading-tight text-white sm:text-4xl">
+              <h1 className="text-2xl font-bold leading-tight text-white sm:text-3xl md:text-4xl">
                 Drop your resume. Get roasted. <span className="text-red-400">Emerge stronger.</span>
               </h1>
-              <p className="text-sm text-zinc-400 sm:text-base">
+              <p className="text-xs text-zinc-400 sm:text-sm md:text-base">
                 Upload a PDF or paste the text. RoastBot will vaporize your buzzwords, score your delusions, and hand you a redemption arc you&apos;ll pretend you thought of.
               </p>
             </div>
@@ -135,18 +135,18 @@ export default function Home() {
             </div>
           </section>
 
-          <section className="grid flex-1 gap-6 overflow-hidden lg:grid-cols-[1.1fr_0.9fr]">
-            <div className="relative flex h-full flex-col overflow-hidden rounded-3xl border border-white/10 bg-black/40 p-6 shadow-inner shadow-red-900/30">
+          <section className="grid gap-6 overflow-visible md:grid-cols-2 md:items-start lg:grid-cols-[1.1fr_0.9fr] lg:flex-1 lg:min-h-0">
+            <div className="relative flex min-w-0 flex-col rounded-3xl border border-white/10 bg-black/40 p-5 shadow-inner shadow-red-900/30 sm:p-6 lg:h-full lg:min-h-0">
               <div className="pointer-events-none absolute inset-0 opacity-30 [background:radial-gradient(circle_at_top,_rgba(248,113,113,0.3),transparent_65%)]" />
-              <div className="relative flex h-full flex-col gap-5">
+              <div className="relative flex flex-col gap-5 lg:h-full">
                 <header className="space-y-2">
                   <p className="text-xs uppercase tracking-[0.5em] text-red-400">Input</p>
                   <h2 className="text-2xl font-semibold text-white">Fuel the Roast</h2>
                   <p className="text-xs text-zinc-500 sm:text-sm">Paste text, upload a file, or both. RoastBot will find something to roast.</p>
                 </header>
 
-                <div className="flex flex-1 flex-col gap-5 overflow-hidden">
-                  <div className="flex-1 space-y-5 overflow-auto pr-2">
+                <div className="flex flex-1 flex-col gap-5 lg:min-h-0">
+                  <div className="space-y-5 overflow-visible lg:flex-1 lg:overflow-auto lg:pr-2">
                     <div
                       onDragEnter={(event) => {
                         event.preventDefault();
@@ -266,16 +266,16 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="relative flex h-full flex-col overflow-hidden rounded-3xl border border-white/10 bg-black/40 p-6 shadow-2xl shadow-red-500/10">
+            <div className="relative flex min-w-0 flex-col rounded-3xl border border-white/10 bg-black/40 p-5 shadow-2xl shadow-red-500/10 sm:p-6 lg:h-full lg:min-h-0">
               <div className="pointer-events-none absolute -left-6 top-6 h-20 w-20 rounded-full bg-red-500/15 blur-3xl" />
               <div className="pointer-events-none absolute -bottom-8 right-4 h-24 w-24 rounded-full bg-rose-500/25 blur-3xl" />
-              <div className="relative flex h-full flex-col gap-5">
+              <div className="relative flex flex-col gap-5 lg:h-full">
                 <header className="space-y-2">
                   <p className="text-xs uppercase tracking-[0.5em] text-red-400">Verdict</p>
                   <h2 className="text-2xl font-semibold text-white">{result ? 'Roast delivered' : 'Awaiting victim'}</h2>
                 </header>
 
-                <div className="flex-1 overflow-auto space-y-6 pr-2">
+                <div className="space-y-6 overflow-visible lg:flex-1 lg:overflow-auto lg:pr-2">
                   {result ? (
                     <div className="space-y-6 animate-slide-up">
                       <div className="rounded-2xl border border-white/10 bg-gradient-to-br from-red-500/20 to-transparent p-6">
