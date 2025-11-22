@@ -1,36 +1,108 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Resume Roaster
 
-## Getting Started
+A brutally honest AI-powered resume reviewer that scores your resume and gives you sarcastic (but helpful) feedback.
 
-First, run the development server:
+## Tech Stack
+
+- **Frontend:** Next.js 14+ (App Router), React, Tailwind CSS, Lucide React
+- **Backend:** Next.js API Routes
+- **AI:** OpenAI API (GPT-3.5-turbo)
+
+## Features
+
+- Paste your resume and get an AI roast
+- Score your resume (0-100)
+- Receive sarcastic but honest feedback
+- Get actual actionable advice
+- Copy results to clipboard
+- Brutalist dark mode UI with red accents
+
+## Setup
+
+### 1. Install Dependencies
+
+```bash
+npm install
+```
+
+### 2. Configure Environment
+
+Create a `.env.local` file in the root directory:
+
+```
+OPENAI_API_KEY=your_openai_api_key_here
+```
+
+Get your API key from [OpenAI Platform](https://platform.openai.com/account/api-keys).
+
+### 3. Run Development Server
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) to see the app.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## How It Works
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. **Input:** Paste your resume text
+2. **Processing:** The app sends it to OpenAI's GPT-3.5-turbo with a custom system prompt
+3. **Output:** You receive:
+   - A score (0-100)
+   - A vibe check (snarky one-liner)
+   - Roast points (specific critiques)
+   - Redemption advice (actually useful tips)
 
-## Learn More
+## File Structure
 
-To learn more about Next.js, take a look at the following resources:
+```
+src/
+├── app/
+│   ├── api/
+│   │   └── roast/
+│   │       └── route.ts     # OpenAI API integration
+│   ├── page.tsx              # Main UI component
+│   ├── layout.tsx            # Root layout
+│   └── globals.css           # Tailwind styles
+└── ...
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Customization
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Personalize the Footer
 
-## Deploy on Vercel
+Edit the footer in `src/app/page.tsx`:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```tsx
+Built by <span className="text-zinc-300 font-semibold">[Your Name]</span>. Hire me before
+I build an AI to replace you.{' '}
+<a href="https://linkedin.com/in/yourprofile">LinkedIn</a>
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Adjust the Roast Tone
+
+Edit the system prompt in `src/app/api/roast/route.ts` to change how aggressive/sarcastic the roasts are.
+
+### Change Colors
+
+All colors use Tailwind classes. The main accent color is `text-red-500`. Customize in the JSX.
+
+## Deployment
+
+Deploy to [Vercel](https://vercel.com):
+
+```bash
+vercel
+```
+
+Make sure to add your `OPENAI_API_KEY` to Vercel's environment variables.
+
+## Notes
+
+- Free tier OpenAI accounts have rate limits
+- Responses are formatted as JSON for consistency
+- The app works client-side (no data persistence)
+
+## License
+
+MIT
