@@ -9,8 +9,8 @@ const variantStyles = {
     main: 'relative z-10 h-full w-full max-w-6xl px-6 py-16',
     shell: 'flex h-full flex-col gap-10 rounded-[32px] border border-white/10 bg-zinc-950/70 p-8 shadow-[0_0_80px_rgba(244,63,94,0.25)] backdrop-blur-2xl',
     grid: 'grid flex-1 grid-cols-[1.1fr_0.9fr] gap-6 min-h-0',
-    inputCard: 'relative flex min-w-0 flex-col overflow-hidden rounded-3xl border border-white/10 bg-black/40 p-6 shadow-inner shadow-red-900/30',
-    verdictCard: 'relative flex min-w-0 flex-col overflow-hidden rounded-3xl border border-white/10 bg-black/40 p-6 shadow-2xl shadow-red-500/10',
+    inputCard: 'relative flex min-w-0 min-h-0 flex-col overflow-hidden rounded-3xl border border-white/10 bg-black/40 p-6 shadow-inner shadow-red-900/30',
+    verdictCard: 'relative flex min-w-0 min-h-0 flex-col overflow-hidden rounded-3xl border border-white/10 bg-black/40 p-6 shadow-2xl shadow-red-500/10',
     inputScroll: 'flex-1 space-y-5 overflow-auto pr-2',
     verdictScroll: 'flex-1 space-y-6 overflow-auto pr-2',
     heroTitle: 'text-4xl',
@@ -74,6 +74,7 @@ export default function BaseLayout({
   setDragActive,
 }: BaseLayoutProps) {
   const styles = variantStyles[variant];
+  const isDesktop = variant === 'computer';
 
   const copyPayload = result
     ? `RESUME ROAST:\n\nScore: ${result.score}/100\nVibe: ${result.vibe_check}\n\nRoasts:\n${result.roast_points
@@ -82,6 +83,10 @@ export default function BaseLayout({
     : '';
 
   const scoreColor = result ? scoreAccent : 'text-zinc-500';
+  const cardBodyClass = `relative flex flex-col gap-5 ${isDesktop ? 'h-full min-h-0' : ''}`;
+  const columnClass = `flex flex-1 flex-col gap-5 ${isDesktop ? 'min-h-0' : ''}`;
+  const inputScrollClass = `${styles.inputScroll} ${isDesktop ? 'min-h-0' : ''}`;
+  const verdictScrollClass = `${styles.verdictScroll} ${isDesktop ? 'min-h-0' : ''}`;
 
   return (
     <div className={styles.outer}>
@@ -114,15 +119,15 @@ export default function BaseLayout({
           <section className={styles.grid}>
             <div className={styles.inputCard}>
               <div className="pointer-events-none absolute inset-0 opacity-30 [background:radial-gradient(circle_at_top,_rgba(248,113,113,0.3),transparent_65%)]" />
-              <div className="relative flex flex-col gap-5 h-full">
+              <div className={cardBodyClass}>
                 <header className="space-y-2">
                   <p className="text-xs uppercase tracking-[0.5em] text-red-400">Input</p>
                   <h2 className="text-2xl font-semibold text-white">Fuel the Roast</h2>
                   <p className="text-xs text-zinc-500 sm:text-sm">Paste text, upload a file, or both. RoastBot will find something to roast.</p>
                 </header>
 
-                <div className="flex flex-1 flex-col gap-5">
-                  <div className={styles.inputScroll}>
+                <div className={columnClass}>
+                  <div className={inputScrollClass}>
                     <div
                       onDragEnter={(event) => {
                         event.preventDefault();
@@ -243,13 +248,13 @@ export default function BaseLayout({
             <div className={styles.verdictCard}>
               <div className="pointer-events-none absolute -left-6 top-6 h-20 w-20 rounded-full bg-red-500/15 blur-3xl" />
               <div className="pointer-events-none absolute -bottom-8 right-4 h-24 w-24 rounded-full bg-rose-500/25 blur-3xl" />
-              <div className="relative flex flex-col gap-5 h-full">
+              <div className={cardBodyClass}>
                 <header className="space-y-2">
                   <p className="text-xs uppercase tracking-[0.5em] text-red-400">Verdict</p>
                   <h2 className="text-2xl font-semibold text-white">{result ? 'Roast delivered' : 'Awaiting victim'}</h2>
                 </header>
 
-                <div className={styles.verdictScroll}>
+                <div className={verdictScrollClass}>
                   {result ? (
                     <div className="space-y-6 animate-slide-up">
                       <div className="rounded-2xl border border-white/10 bg-gradient-to-br from-red-500/20 to-transparent p-6">
